@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Player } from "../App";
 import AvatarImg from "./AvatarImg";
 import SetAvatarImg from "./SetAvatarImg";
@@ -9,7 +10,6 @@ const PlayerInputForm = ({
   activePlayers: Player[];
   setActivePlayers: React.Dispatch<React.SetStateAction<Player[]>>;
 }) => {
-  
   const setFormInput = (player: Player, e: string) => {
     setActivePlayers((prev) => {
       return prev.map((p) =>
@@ -17,6 +17,11 @@ const PlayerInputForm = ({
       );
     });
   };
+
+  useEffect(() => {
+    console.log(activePlayers);
+    console.log(activePlayers.length);
+  }, []);
 
   return (
     <form className="flex flex-col w-full py-6">
@@ -29,6 +34,7 @@ const PlayerInputForm = ({
             type="text"
             placeholder={`Player ${i + 1}`}
             className="w-2/3 px-4 py-2"
+            defaultValue={player.name as string}
             onChange={(e) => setFormInput(player, e.target.value)}
           />
           {!player.avatar === null ? (

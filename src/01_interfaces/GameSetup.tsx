@@ -6,31 +6,53 @@ const maxPlayers = 4;
 
 const GameSetup = ({
   activePlayers,
-  setActivePlayers
+  setActivePlayers,
 }: {
   activePlayers: Player[];
-  setActivePlayers: React.Dispatch<React.SetStateAction<Player[]>>
+  setActivePlayers: React.Dispatch<React.SetStateAction<Player[]>>;
 }) => {
 
+  const createPlayer = (order: number) => {
+    const player = {
+      name: null,
+      avatar: null,
+      order: order,
+    };
+    return player;
+  };
+
   const setPlayers = (players: number) => {
-      setActivePlayers([]);
-      [...Array(players)].map((num, i) => {
-        const player = {
-          name: null,
-          avatar: null,
-          order: i + 1
-        };
+    const change = players - activePlayers.length;
+
+    if (activePlayers.length == 0) {
+      [...Array(players)].map((_, i) => {
+        const player = createPlayer(i + 1);
         setActivePlayers((prev) => [...prev, player]);
       });
-
-};
+    } else {
+      
+      if (change > 0) {
+        let inc = activePlayers.length;
+        [...Array(change)].map((num) => {
+          inc = inc + 1;
+          const player = createPlayer(inc);
+          setActivePlayers((prev) => [...prev, player]);
+        });
+      } else {
+        const start = activePlayers.length - Math.abs(change);
+        setActivePlayers((prev) => {
+          const newArr = [...prev];
+          newArr.splice(start, Math.abs(change));
+          return newArr;
+        });
+      }
+    }
+  };
 
   const renderButtons = () => {
     const buttons = [];
     for (let i = 1; i <= maxPlayers; i++) {
-      buttons.push(
-        <ActionBtn key={i} text={i} func={() => setPlayers(i)} />
-      );
+      buttons.push(<ActionBtn key={i} text={i} func={() => setPlayers(i)} />);
     }
     return buttons;
   };
@@ -44,7 +66,10 @@ const GameSetup = ({
         </div>
       </div>
       {activePlayers.length != null ? (
-        <PlayerInputForm activePlayers={activePlayers} setActivePlayers={setActivePlayers} />
+        <PlayerInputForm
+          activePlayers={activePlayers}
+          setActivePlayers={setActivePlayers}
+        />
       ) : (
         <></>
       )}
