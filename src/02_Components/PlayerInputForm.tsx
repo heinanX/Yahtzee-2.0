@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Player } from "../App";
 import AvatarImg from "./AvatarImg";
 import SetAvatarImg from "./SetAvatarImg";
@@ -17,11 +16,6 @@ const PlayerInputForm = ({
       );
     });
   };
-
-  useEffect(() => {
-    console.log(activePlayers);
-    console.log(activePlayers.length);
-  }, []);
 
   return (
     <form className="flex flex-col w-full py-6">

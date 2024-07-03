@@ -23,7 +23,6 @@ const GameSetup = ({
 
   const setPlayers = (players: number) => {
     const change = players - activePlayers.length;
-
     if (change > 0) {
       let inc = activePlayers.length;
       [...Array(change)].map((_, i) => {
