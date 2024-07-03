@@ -24,28 +24,20 @@ const GameSetup = ({
   const setPlayers = (players: number) => {
     const change = players - activePlayers.length;
 
-    if (activePlayers.length == 0) {
-      [...Array(players)].map((_, i) => {
-        const player = createPlayer(i + 1);
+    if (change > 0) {
+      let inc = activePlayers.length;
+      [...Array(change)].map((_, i) => {
+        inc = inc + 1;
+        const player = activePlayers.length == 0 ? createPlayer(i + 1) : createPlayer(inc);
         setActivePlayers((prev) => [...prev, player]);
       });
     } else {
-      
-      if (change > 0) {
-        let inc = activePlayers.length;
-        [...Array(change)].map((num) => {
-          inc = inc + 1;
-          const player = createPlayer(inc);
-          setActivePlayers((prev) => [...prev, player]);
-        });
-      } else {
-        const start = activePlayers.length - Math.abs(change);
-        setActivePlayers((prev) => {
-          const newArr = [...prev];
-          newArr.splice(start, Math.abs(change));
-          return newArr;
-        });
-      }
+      const start = activePlayers.length - Math.abs(change);
+      setActivePlayers((prev) => {
+        const newArr = [...prev];
+        newArr.splice(start, Math.abs(change));
+        return newArr;
+      });
     }
   };
 
