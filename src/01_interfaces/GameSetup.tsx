@@ -11,10 +11,9 @@ const GameSetup = ({
   activePlayers: Player[];
   setActivePlayers: React.Dispatch<React.SetStateAction<Player[]>>;
 }) => {
-
   const createPlayer = (order: number) => {
     const player = {
-      name: 'player ' + order,
+      name: "player " + order,
       avatar: null,
       order: order,
     };
@@ -27,7 +26,8 @@ const GameSetup = ({
       let inc = activePlayers.length;
       [...Array(change)].map((_, i) => {
         inc = inc + 1;
-        const player = activePlayers.length == 0 ? createPlayer(i + 1) : createPlayer(inc);
+        const player =
+          activePlayers.length == 0 ? createPlayer(i + 1) : createPlayer(inc);
         setActivePlayers((prev) => [...prev, player]);
       });
     } else {
@@ -65,6 +65,7 @@ const GameSetup = ({
       ) : (
         <></>
       )}
+      <button>Start Game</button> {/* Add a start game button only available when players have been set */}
     </>
   );
 };

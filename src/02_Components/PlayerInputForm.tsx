@@ -35,7 +35,7 @@ const PlayerInputForm = ({
           {player.avatar ? (
             <AvatarImg url={player.avatar as string} player={player.order} />
           ) : (
-            <SetAvatarImg player={player} setActivePlayers={setActivePlayers} />
+            <SetAvatarImg player={player} setActivePlayers={setActivePlayers} activePlayers={activePlayers} />
           )}
         </section>
       ))}
