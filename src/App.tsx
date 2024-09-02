@@ -9,6 +9,7 @@ export interface Player {
 }
 
 function App() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeGame, setActiveGame] = useState<boolean>(false);
   const [activePlayers, setActivePlayers] = useState<Player[]>([]);
 

@@ -14,7 +14,7 @@ const GameSetup = ({
 
   const createPlayer = (order: number) => {
     const player = {
-      name: null,
+      name: 'player ' + order,
       avatar: null,
       order: order,
     };

@@ -9,6 +9,7 @@ const PlayerInputForm = ({
   activePlayers: Player[];
   setActivePlayers: React.Dispatch<React.SetStateAction<Player[]>>;
 }) => {
+  
   const setFormInput = (player: Player, e: string) => {
     setActivePlayers((prev) => {
       return prev.map((p) =>
@@ -26,13 +27,13 @@ const PlayerInputForm = ({
         >
           <input
             type="text"
-            placeholder={`Player ${i + 1}`}
+            placeholder={player.name as string}
             className="w-2/3 px-4 py-2"
-            defaultValue={player.name as string}
+            
             onChange={(e) => setFormInput(player, e.target.value)}
           />
-          {!player.avatar === null ? (
-            <AvatarImg url={player.avatar as string} player={1} />
+          {player.avatar ? (
+            <AvatarImg url={player.avatar as string} player={player.order} />
           ) : (
             <SetAvatarImg player={player} setActivePlayers={setActivePlayers} />
           )}
