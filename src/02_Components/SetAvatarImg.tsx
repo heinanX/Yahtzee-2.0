@@ -21,7 +21,7 @@ const SetAvatarImg = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleAvatarSelect = (selectedAvatar) => {
+  const handleAvatarSelect = (selectedAvatar: {avatar: string, active: boolean}) => {
     setActivePlayers((players) =>
       players.map((p) =>
         p.name === player.name ? { ...p, avatar: selectedAvatar.avatar } : p

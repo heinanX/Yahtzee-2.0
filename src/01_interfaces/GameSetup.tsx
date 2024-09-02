@@ -40,6 +40,7 @@ const GameSetup = ({
     }
   };
 
+  // function that creates buttons to set number of players
   const renderButtons = () => {
     const buttons = [];
     for (let i = 1; i <= maxPlayers; i++) {
